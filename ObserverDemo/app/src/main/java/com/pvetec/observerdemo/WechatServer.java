@@ -1,6 +1,10 @@
 package com.pvetec.observerdemo;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Jack on 2018/12/7.
@@ -10,26 +14,45 @@ import java.util.ArrayList;
 
 public class WechatServer implements Observerable{
 
-    private ArrayList<Observer> list;
+    private List<Observer> mList;
     private String message;
 
     public WechatServer(){
-        list = new ArrayList<>();
+        mList = new ArrayList<>();
     }
     @Override
     public void registerObserver(Observer observer) {
-        list.add(observer);
+        mList.add(observer);
     }
 
     @Override
-    public void removeObserver() {
-            list.clear();
+    public void removeObserver(Observer observer) {
+        Log.d("WechatServer1", "removeObserver: "+mList.toArray().toString());
+        if (mList != null){
+            Iterator<Observer> iterators = mList.iterator();
+            if (iterators != null){
+                while (iterators.hasNext()){
+                    Observer o = iterators.next();
+                    if (observer != null && observer == o){
+                        iterators.remove();
+                    }
+                }
+            }
+        }
+        Log.d("WechatServer2", "removeObserver: "+mList.toArray().toString());
+    }
+
+    @Override
+    public void removeAllObserver() {
+        if (mList != null) {
+            mList.clear();
+        }
     }
 
     @Override
     public void notifyObserver() {
         for (Observer observer :
-                list) {
+                mList) {
             observer.update(message);
         }
     }

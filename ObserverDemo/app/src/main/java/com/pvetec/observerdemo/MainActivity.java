@@ -20,11 +20,13 @@ public class MainActivity extends AppCompatActivity {
         mObserver.registerObserver(daiyongrao);
         mObserver.registerObserver(zhaodan);
         mObserver.setInfomation("lalaallalalalallalalal");
+        mObserver.removeObserver(daiyongrao);
+        mObserver.setInfomation("ddddddddddddddddddddddd");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mObserver.removeObserver();
+        mObserver.removeAllObserver();
     }
 }

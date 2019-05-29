@@ -8,6 +8,7 @@ package com.pvetec.observerdemo;
 public interface Observerable {
 
     void registerObserver(Observer observer);
-    void removeObserver();
+    void removeObserver(Observer observer);
+    void removeAllObserver();
     void notifyObserver();
 }

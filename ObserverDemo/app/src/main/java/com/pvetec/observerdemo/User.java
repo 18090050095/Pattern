@@ -9,7 +9,7 @@ import android.util.Log;
 
 public class User implements Observer {
 
-    public static final String TAG = "User";
+    public static final String TAG = "WechatServer";
 
     private String name;
 
